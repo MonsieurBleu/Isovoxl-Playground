@@ -1,0 +1,43 @@
+#ifndef INPUTS_HPP
+#define INPUTS_HPP
+
+#include <string>
+#include <SDL2/SDL.h>
+
+struct keybutton
+{
+    SDL_Scancode code;
+    std::string name;
+};
+
+struct Construction_cinputs
+{
+    keybutton 
+        CAM_ROTL    = {SDL_SCANCODE_A, "ROTATE CAMERA LEFT"},
+        CAM_ROTR    = {SDL_SCANCODE_D, "ROTATE CAMERA RIGHT"},
+        CAM_CENT    = {SDL_SCANCODE_SPACE, "CENTER CAMERA"},
+        CAM_L       = {SDL_SCANCODE_KP_4, "MOVE CAMERA LEFT"},
+        CAM_R       = {SDL_SCANCODE_KP_6, "MOVE CAMERA RIGHT"},
+        CAM_U       = {SDL_SCANCODE_KP_8, "MOVE CAMERA UP"},
+        CAM_D       = {SDL_SCANCODE_KP_5, "MOVE CAMERA DOWN"},
+        OPEN_BLSEl  = {SDL_SCANCODE_Z, "OPEN BLOCK SELECTION MENU"},
+        BLCK_NEXT   = {SDL_SCANCODE_Q, "NEXT BLOCK"},
+        BLCK_PREV   = {SDL_SCANCODE_E, "PREV BLOCK"},
+        MODE_NEXT   = {SDL_SCANCODE_W, "CONSTRUCTION MODE NEXT"},
+        MODE_PREV   = {SDL_SCANCODE_S, "CONSTRUCTION MODE PREV"},
+        TOOL_NEXT   = {SDL_SCANCODE_TAB, "TOOL NEXT"},
+        TOOL_PREV   = {SDL_SCANCODE_CAPSLOCK, "TOOL PREV"},
+        TGLE_MODE   = {SDL_SCANCODE_0, "TOGGLE CONSTRUCTION MODE"},
+        TGLE_PIPET  = {SDL_SCANCODE_F, "TOGGLE PIPETTE"},
+        RES_STRUCT  = {SDL_SCANCODE_DELETE, "RESET CURRENT STRUCTURE"},
+        METEO_NEXT  = {SDL_SCANCODE_UP, "NEXT METEO"},
+        METEO_PREV  = {SDL_SCANCODE_DOWN, "PREV METEO"},
+        TGLE_HUD    = {SDL_SCANCODE_F1, "TOGGLE HUD"},
+        SCREENSHOT  = {SDL_SCANCODE_F2, "SCREENSHOT"},
+        TGLE_GRID   = {SDL_SCANCODE_F3, "TOGGLE GRID"},
+        QUICKSAVE   = {SDL_SCANCODE_F5, "QUICKSAVE"},
+        QUICKLOAD   = {SDL_SCANCODE_F9, "QUICKLOAD"}
+        ;
+};
+
+#endif
