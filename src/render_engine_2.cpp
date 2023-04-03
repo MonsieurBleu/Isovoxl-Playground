@@ -482,9 +482,6 @@ void Render_Engine::refresh_height_render()
             if(abort_rendrefresh) return;
 
             sb = &projection_grid.pos[face][i][j];
-            
-            // !A && B
-            // A && !B
 
             if(!reverse_rhr != !(sb->height >= max_height_render || sb->height_transparent >= max_height_render))
             {
@@ -548,6 +545,9 @@ void Render_Engine::refresh_height_render()
                 }
             }
         }
+
+        // std::cout << projection_grid.size[face][0] << "\t";
+        // std::cout << projection_grid.size[face][1] << "\n";
     }
 
     std::cout << " finish\n\n";

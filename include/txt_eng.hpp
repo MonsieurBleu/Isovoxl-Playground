@@ -94,8 +94,8 @@ const std::string Tutorial[] =
     "Left Click to place a block",
     "Mouse Wheel to zoom in/out", // -- clarity
     // "Mouse Wheel and L/R Shift to hide upper voxels",
-    "Mouse Wheel + Shift to change the maximum view height",         // -- clarity
-    "Mouse Wheel + CTRL to change the height of wall/volume tools",  // -- clarity
+    "Mouse Wheel and Shift to change the maximum view height",         // -- clarity
+    "Mouse Wheel and CTRL to change the height of wall/volume tools",  // -- clarity
     " to rotate the camera",
     " to switch between construction modes",
     " to open block selection screen",
@@ -103,7 +103,7 @@ const std::string Tutorial[] =
     " to toggle grid",
     " to quicksave",
     " to quickload",
-    "CTRL + Z/Y to undo/redo modifications",
+    "CTRL and Z/Y to undo/redo modifications",
     "Oh, and have fun !"
 };
 

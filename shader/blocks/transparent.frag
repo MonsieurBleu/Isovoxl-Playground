@@ -189,7 +189,7 @@ void handle_water(vec4 pixel, vec4 pixel_norm)
 
     uint depth = extract_depth(DFIBp);
 
-    // if(depth > block_height) discard;
+    if(depth >= block_height) discard;
 
     // determine depth height
     float water_depth;

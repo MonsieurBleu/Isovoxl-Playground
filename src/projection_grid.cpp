@@ -57,10 +57,10 @@ Projection_grid::~Projection_grid()
     // free_pos();
 
     size[0][0] = 1 + CHUNK_SIZE*256;
-    size[0][1] = 1 + CHUNK_SIZE*75;
+    size[0][1] = CHUNK_SIZE*75;
 
     size[1][0] = 1 + CHUNK_SIZE*256;
-    size[1][1] = 1 + CHUNK_SIZE*75;
+    size[1][1] = CHUNK_SIZE*75;
 
     size[2][0] = 1 + CHUNK_SIZE*256;
     size[2][1] = 1 + CHUNK_SIZE*256;
@@ -114,10 +114,10 @@ void Projection_grid::init_pos(const int sizex, const int sizey, const int sizez
     // }
     
     size[0][0] = sizey+1;
-    size[0][1] = sizez+1;
+    size[0][1] = sizez;
 
     size[1][0] = sizex+1;
-    size[1][1] = sizez+1;
+    size[1][1] = sizez;
 
     size[2][0] = sizex+1;
     size[2][1] = sizey+1;

@@ -42,16 +42,25 @@ int LightHandler::add(light_block lb)
 
 void World::check_light_trash_bin()
 {
-    for(auto i = lights.trash_bin.begin(); i != lights.trash_bin.end(); i++)
+    std::cout << "Checking lights trash bin with size " << lights.trash_bin.size();
+    startbenchrono();
+
+    for(auto i = lights.trash_bin.begin(); i != lights.trash_bin.end();)
     {
         Uint8 wid = get_block_id_wcoord_nowvp(i->pos);
 
         if(i->id == wid)
         {
-            lights.add(*i);
-            lights.trash_bin.erase(i);
+            auto j = i;
+            i++;
+            lights.add(*j);
+            lights.trash_bin.erase(j);
         }
+        else
+            i++;
     }
+
+    endbenchrono();
 
     lights.is_full = true;
     lights.time_since_last_full = timems;

@@ -546,7 +546,7 @@ Uint8 Render_Engine::render_transparent_block(const chunk_coordonate &pgcoord)
         transparent_sprite_counter++;
     }
     if(sb->identical_line_counter_transparent < 0 || sb->identical_line_counter_transparent > IDENDICAL_LINE_MAX) 
-        std::cout << sb->identical_line_counter_transparent << " transparent !!!!!\n";
+        std::cout << sb->identical_line_counter_transparent << " transparent !!!!! " << pgcoord << "\n";
 
     return sb->identical_line_counter_transparent;
 }

@@ -176,42 +176,42 @@ int Game::input_utils(SDL_Event &event, SDL_Keymod km)
                     //         }
                     //     break;
 
-                    // case SDLK_p :
-                    //     system("cls");
-                    //     std::cout << "\nrefreshing shaders...";
-                    //     RE.refresh_shaders();
-                    //     RE.DFIB_shader.activate();
-                    //     GPU_SetShaderImage(RE.Textures[BLOCK_AO]->ptr, RE.DFIB_shader.get_location("ao"), 2);
-                    //     GPU_SetShaderImage(RE.Textures[SHADERTEXT_WATER]->ptr, RE.DFIB_shader.get_location("water"), 4);
-                    //     GPU_SetShaderImage(RE.Textures[BLOCK_BORDER]->ptr, RE.DFIB_shader.get_location("border"), 5);
-                    //     GPU_SetShaderImage(RE.Textures[BLOCK_NORMAL]->ptr, RE.DFIB_shader.get_location("normal"), 6);
-                    //     GPU_SetShaderImage(RE.Textures[BLOCK_LIGHT]->ptr, RE.DFIB_shader.get_location("light"), 7);
-                    //     RE.DFIB_shader.deactivate();
+                    case SDLK_p :
+                        system("cls");
+                        std::cout << "\nrefreshing shaders...";
+                        RE.refresh_shaders();
+                        RE.DFIB_shader.activate();
+                        GPU_SetShaderImage(RE.Textures[BLOCK_AO]->ptr, RE.DFIB_shader.get_location("ao"), 2);
+                        GPU_SetShaderImage(RE.Textures[SHADERTEXT_WATER]->ptr, RE.DFIB_shader.get_location("water"), 4);
+                        GPU_SetShaderImage(RE.Textures[BLOCK_BORDER]->ptr, RE.DFIB_shader.get_location("border"), 5);
+                        GPU_SetShaderImage(RE.Textures[BLOCK_NORMAL]->ptr, RE.DFIB_shader.get_location("normal"), 6);
+                        GPU_SetShaderImage(RE.Textures[BLOCK_LIGHT]->ptr, RE.DFIB_shader.get_location("light"), 7);
+                        RE.DFIB_shader.deactivate();
                         
-                    //     init_meteos();
+                        init_meteos();
 
-                    //     switch (state)
-                    //     {
-                    //     case STATE_ADVENTURE:
-                    //     case STATE_CONSTRUCTION:
-                    //     case STATE_BLOCK_SELECTION:
-                    //     case STATE_WORLD_SELECTION:
-                    //         RE.set_global_illumination(meteos[*Current_meteo].global_illumination);
-                    //         RE.background_shader = meteos[*Current_meteo].background_shader;
-                    //         RE.background_shader_data = meteos[*Current_meteo].add_data;
-                    //         break;
+                        switch (state)
+                        {
+                        case STATE_ADVENTURE:
+                        case STATE_CONSTRUCTION:
+                        case STATE_BLOCK_SELECTION:
+                        case STATE_WORLD_SELECTION:
+                            RE.set_global_illumination(meteos[*Current_meteo].global_illumination);
+                            RE.background_shader = meteos[*Current_meteo].background_shader;
+                            RE.background_shader_data = meteos[*Current_meteo].add_data;
+                            break;
                         
-                    //     default:
-                    //         RE.set_global_illumination(meteos[METEO_MAIN_MENU].global_illumination);
-                    //         RE.background_shader = meteos[METEO_MAIN_MENU].background_shader;
-                    //         RE.background_shader_data = meteos[METEO_MAIN_MENU].add_data;
-                    //         break;
-                    //     }
+                        default:
+                            RE.set_global_illumination(meteos[METEO_MAIN_MENU].global_illumination);
+                            RE.background_shader = meteos[METEO_MAIN_MENU].background_shader;
+                            RE.background_shader_data = meteos[METEO_MAIN_MENU].add_data;
+                            break;
+                        }
 
-                    //     UI.generate_tiles(-2, RE.screen->w, RE.screen->h);
+                        UI.generate_tiles(-2, RE.screen->w, RE.screen->h);
 
-                    //     retval = INPUT_CLEAR;
-                    //     break;
+                        retval = INPUT_CLEAR;
+                        break;
 
                     // case SDLK_KP_MINUS :
                     //     std::cout << "toggle physics engine\n";
@@ -924,13 +924,13 @@ int Game::input_block_selection(SDL_Event &event, SDL_Keymod km)
                         break;
 
                     default :
-                    if(event.key.keysym.scancode == Cinpt.BLCK_NEXT.code)
+                    if(event.key.keysym.scancode == Cinpt.BLCK_PREV.code)
                     {
                         cb_id = (cb_id+1)%8;
                         retval = INPUT_CLEAR;
                     }
                     
-                    else if(event.key.keysym.scancode == Cinpt.BLCK_PREV.code)
+                    else if(event.key.keysym.scancode == Cinpt.BLCK_NEXT.code)
                     {
                         cb_id = cb_id-1 < 0 ? 7 : cb_id-1;
                         retval = INPUT_CLEAR;
@@ -1217,13 +1217,13 @@ int Game::input_construction(SDL_Event &event, SDL_Keymod km)
                     retval = INPUT_CLEAR;
                 }
 
-                else if(event.key.keysym.scancode == Cinpt.BLCK_NEXT.code)
+                else if(event.key.keysym.scancode == Cinpt.BLCK_PREV.code)
                 {
                     cb_id = (cb_id+1)%8;
                     retval = INPUT_CLEAR;
                 }
 
-                else if(event.key.keysym.scancode == Cinpt.BLCK_PREV.code)
+                else if(event.key.keysym.scancode == Cinpt.BLCK_NEXT.code)
                 {
                     cb_id = cb_id-1 < 0 ? 7 : cb_id-1;
                     retval = INPUT_CLEAR;
@@ -1247,7 +1247,7 @@ int Game::input_construction(SDL_Event &event, SDL_Keymod km)
                     retval = INPUT_CLEAR;
                 }
 
-                else if(event.key.keysym.scancode == Cinpt.BLCK_PREV.code)
+                else if(event.key.keysym.scancode == Cinpt.BLCK_NEXT.code)
                 {
                     Current_meteo = circularPrev(unlocked_meteo, Current_meteo);
                     RE.set_global_illumination(meteos[*Current_meteo].global_illumination);

@@ -137,7 +137,7 @@ tested floats exemple :
 
 //////// BLOCK ID ////////
 #define BLOCK_TRANSPARENT_LIMIT 241
-#define BLOCK_LIGHT_LIMIT       225
+#define BLOCK_LIGHT_LIMIT       224
 #define BLOCK_EMPTY     0
 #define BLOCK_DEBUG     1
 #define BLOCK_BLUE      2
