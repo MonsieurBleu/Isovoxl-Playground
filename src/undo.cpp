@@ -128,8 +128,8 @@ void UndoManager::add_undo(chunk_save &data, bool clear_stack) {
         clear();
         return;
     }
-    std::cout << "adding undo" << std::endl;
-    std::cout << "current size: " << current_size << std::endl;
+    // std::cout << "adding undo" << std::endl;
+    // std::cout << "current size: " << current_size << std::endl;
 
 
     if (clear_stack) {
@@ -192,7 +192,7 @@ void UndoManager::add_redo(chunk_save &data) {
         }
     }
     */
-    std::cout << "adding redo " << redo_stack.size() << "\n";
+    // std::cout << "adding redo " << redo_stack.size() << "\n";
     redo_stack.push_front(data);
     current_size += data.get_size_in_bytes();
 }
@@ -201,10 +201,10 @@ chunk_save empty_dat;
 
 chunk_save UndoManager::undo() {
     if (undo_stack.empty()) {
-        std::cout << "undo stack empty" << std::endl;
+        // std::cout << "undo stack empty" << std::endl;
         return empty_dat;
     }
-    std::cout << "undoing" << std::endl;
+    // std::cout << "undoing" << std::endl;
 
     chunk_save data = undo_stack.front();
     undo_stack.pop_front();
@@ -214,10 +214,10 @@ chunk_save UndoManager::undo() {
 
 chunk_save UndoManager::redo() {
     if (redo_stack.empty()) {
-        std::cout << "redo stack empty" << std::endl;
+        // std::cout << "redo stack empty" << std::endl;
         return chunk_save(0, 0);
     }
-    std::cout << "redoing" << std::endl;
+    // std::cout << "redoing" << std::endl;
 
     chunk_save data = redo_stack.front();
     redo_stack.pop_front();

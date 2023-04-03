@@ -285,6 +285,7 @@ void Multithreaded_Event_Handler::handle()
                     cd->coord = bc2.chunk;
                     cd->compress_value = c.compress_value;
                 }
+
                 UM.add_undo(modified_chunk);
 
                 if(RE.world.modify_block_wvp(event.data.wcoord1, event.data.blockid))

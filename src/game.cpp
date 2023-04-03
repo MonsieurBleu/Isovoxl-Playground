@@ -736,7 +736,7 @@ void Game::refresh_world_render_fast()
 void Game::undo() {
     chunk_save cs = undo_manager.undo();
 
-    if (cs.size == 0) return;
+    if (cs.size == 0 && cs.csize == 0) return;
 
     AE.Play_woosh();
 
@@ -759,6 +759,12 @@ void Game::undo() {
         world_coordonate start_wc = start_bc.to_coord3D();
         world_coordonate end_wc = end_bc.to_coord3D();
 
+        start_wc.x -= 2;
+        start_wc.y -=  2;
+
+        end_wc.x += 2;
+        end_wc.y += 2;
+
         RE.refresh_cuboid(start_wc, end_wc);
     }
 
@@ -770,7 +776,7 @@ void Game::undo() {
 void Game::redo() {
     chunk_save cs = undo_manager.redo();
 
-    if (cs.size == 0) return;
+    if (cs.size == 0 && cs.csize == 0) return;
 
     AE.Play_woosh(true);
 
@@ -793,6 +799,11 @@ void Game::redo() {
         world_coordonate start_wc = start_bc.to_coord3D();
         world_coordonate end_wc = end_bc.to_coord3D();
 
+        start_wc.x -= 2;
+        start_wc.y -=  2;
+
+        end_wc.x += 2;
+        end_wc.y += 2;
         
         RE.refresh_cuboid(start_wc, end_wc);
     }

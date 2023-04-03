@@ -1006,9 +1006,9 @@ void World_Generator::generate_height_Flat(World &world)
         Uint8 block1 = 26;
         Uint8 block2 = 32;
 
-        for(int x = 0; x < world.max_chunk_coord.x; x++)
+        for(int x = 0; x <= world.max_chunk_coord.x; x++)
         {
-            for(int y = 0; y < world.max_chunk_coord.y; y++)
+            for(int y = 0; y <= world.max_chunk_coord.y; y++)
             {
                 if((x+y)%2)
                 {
