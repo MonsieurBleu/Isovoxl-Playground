@@ -617,7 +617,9 @@ void UI_Engine::render_frame(int game_state,
         float fontsize = 0.0225;
         draw_txt_line(UI, 0.5, sizes_ydec+0.125, NW_SIZE_NAMES, 5, *menu_selected[0], &menu_selectionables[0], -1, fontsize);
         float yjump = fontsize*3;
-        draw_txt_line(UI, 0.125+fontsize, 0.025 + yjump*2, NW_BIOMES_NAMES, 9, *menu_selected[1], &menu_selectionables[1], 1, fontsize);
+        draw_txt_line(UI, 0.125+fontsize*4*((float)(screen->h)/screen->w), 0.025 + yjump*2, 
+                      NW_BIOMES_NAMES, 9, *menu_selected[1], &menu_selectionables[1], 1, fontsize);
+        // draw_txt_line(UI, 0.125+fontsize, 0.025 + yjump*2, NW_BIOMES_NAMES, 9, *menu_selected[1], &menu_selectionables[1], 1, fontsize);
         draw_txt_line(UI, 0.5, 0.95, NW_PRESET_NAMES, 4, *menu_selected[2], &menu_selectionables[2], -1, fontsize);
 
         if(*menu_selected[3])

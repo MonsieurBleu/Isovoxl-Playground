@@ -247,23 +247,25 @@ void main (void)
     vec4 block_color = texture(atlas, ColorCoord);
 
     ///// BORDER /////
-    depth = extract_depth(DFIB);
-    extract_border(DFIB);
 
-    if((features & SFEATURE_GRID) == 0)
-        PixelTint *= handle_border3(b);
-    else if(border)
+    if(sprite_size > 5)
     {
-        // block_color = vec4(2.0, 2.0, 0.0, 1.0);
+        depth = extract_depth(DFIB);
+        extract_border(DFIB);
 
-        block_color = 1.0 - block_color;
-        
-        block_color.rgb = rgb2hsv(block_color.rgb);
-        block_color.g = 1.0;
-        block_color.b = 1.0;
-        block_color.rgb = hsv2rgb(block_color.rgb);
+        if((features & SFEATURE_GRID) == 0)
+            PixelTint *= handle_border3(b);
+        else if(border)
+        {
+            block_color = 1.0 - block_color;
+            
+            block_color.rgb = rgb2hsv(block_color.rgb);
+            block_color.g = 1.0;
+            block_color.b = 1.0;
+            block_color.rgb = hsv2rgb(block_color.rgb);
 
-        PixelTint = vec4(1.0);
+            PixelTint = vec4(1.0);
+        }
     }
 
     ///// FINAL /////
