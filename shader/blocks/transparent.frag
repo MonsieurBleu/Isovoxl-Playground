@@ -525,6 +525,11 @@ vec2 coord_roration(vec2 uv, vec2 rpoint, float angle)
 
 void main (void)
 {
+    fragColor = vec4(0.0);
+    fragColor.a = 1.0;
+    gl_FragDepth = 0.0;
+    // return;
+
     id = block_info%256;
 
     vec4 pixel;
