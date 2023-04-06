@@ -294,33 +294,42 @@ void Render_Engine::set_block_renderflags(char face, int i, int j)
     int right = world.get_opaque_block_id(coord, x+1, y, z);
     int top   = world.get_opaque_block_id(coord, x, y, z+1);
 
+    int id;
+
     // t : corner left & l : corner top left
-    render_flag.b += !(render_flag.b & 80) && world.get_opaque_block_id(coord, x-1, y+1, z+1) ? 2 : 0;
+    id = world.get_opaque_block_id(coord, x-1, y+1, z+1);
+    render_flag.b += !(render_flag.b & 80) && id && id < BLOCK_LIGHT_LIMIT ? 2 : 0;
 
     // t : corner right & r : corner top right
-    render_flag.b += !(render_flag.b & 40) && world.get_opaque_block_id(coord, x+1, y-1, z+1) ? 1 : 0;
+    id = world.get_opaque_block_id(coord, x+1, y-1, z+1);
+    render_flag.b += !(render_flag.b & 40) && id && id < BLOCK_LIGHT_LIMIT ? 1 : 0;
 
     // r : left && l : right
-    render_flag.g += world.get_opaque_block_id(coord, x+1, y+1, z) ? 64 : 0;
+    id = world.get_opaque_block_id(coord, x+1, y+1, z);
+    render_flag.g += id && id < BLOCK_LIGHT_LIMIT ? 64 : 0;
 
     // r : bottom left & l : bottom right
-    render_flag.g += !(render_flag.g & 72) && world.get_opaque_block_id(coord, x+1, y+1, z-1) ? 1 : 0;
+    id = world.get_opaque_block_id(coord, x+1, y+1, z-1);
+    render_flag.g += !(render_flag.g & 72) && id && id < BLOCK_LIGHT_LIMIT ? 1 : 0;
 
     if(!left)
     {
         render_flag.r += 128;
 
         // AO LEFT
-        render_flag.r += world.get_opaque_block_id(coord, x-1, y+1, z) ? 64 : 0;
+        id = world.get_opaque_block_id(coord, x-1, y+1, z);
+        render_flag.r += id && id < BLOCK_LIGHT_LIMIT ? 64 : 0;
 
         //AO RIGHT
         // render_flag.r += world.get_opaque_block_id(coord, x+1, y+1, z) ? 32 : 0;
 
         //AO TOP
-        render_flag.r += world.get_opaque_block_id(coord, x, y+1, z+1) ? 16 : 0;
+        id = world.get_opaque_block_id(coord, x, y+1, z+1);
+        render_flag.r += id && id < BLOCK_LIGHT_LIMIT ? 16 : 0;
 
         //AO BOTTOM
-        render_flag.r += world.get_opaque_block_id(coord, x, y+1, z-1) ? 8 : 0;
+        id = world.get_opaque_block_id(coord, x, y+1, z-1);
+        render_flag.r += id && id < BLOCK_LIGHT_LIMIT ? 8 : 0;
 
         //AO CORNER TOP LEFT
         // render_flag.r += !(render_flag.r & 80) && world.get_opaque_block_id(coord, x-1, y+1, z+1) ? 4 : 0;
@@ -329,7 +338,8 @@ void Render_Engine::set_block_renderflags(char face, int i, int j)
         // render_flag.r += !(render_flag.r & 40) && world.get_opaque_block_id(coord, x+1, y+1, z-1) ? 2 : 0;
 
         //AO CORNER BOTTOM LEFT
-        render_flag.r += !(render_flag.r & 72) && world.get_opaque_block_id(coord, x-1, y+1, z-1) ? 1 : 0;
+        id = world.get_opaque_block_id(coord, x-1, y+1, z-1);
+        render_flag.r += !(render_flag.r & 72) && id && id < BLOCK_LIGHT_LIMIT ? 1 : 0;
     }
 
     if(!right)
@@ -340,19 +350,23 @@ void Render_Engine::set_block_renderflags(char face, int i, int j)
         // render_flag.g += world.get_opaque_block_id(coord, x+1, y+1, z) ? 64 : 0;
 
         //AO RIGHT
-        render_flag.g += world.get_opaque_block_id(coord, x+1, y-1, z) ? 32 : 0;
+        id = world.get_opaque_block_id(coord, x+1, y-1, z);
+        render_flag.g += id && id < BLOCK_LIGHT_LIMIT ? 32 : 0;
 
         //AO TOP
-        render_flag.g += world.get_opaque_block_id(coord, x+1, y, z+1) ? 16 : 0;
+        id = world.get_opaque_block_id(coord, x+1, y, z+1);
+        render_flag.g += id && id < BLOCK_LIGHT_LIMIT ? 16 : 0;
 
         //AO BOTTOM
-        render_flag.g += world.get_opaque_block_id(coord, x+1, y, z-1) ? 8 : 0;
+        id = world.get_opaque_block_id(coord, x+1, y, z-1);
+        render_flag.g += id && id < BLOCK_LIGHT_LIMIT ? 8 : 0;
 
         //AO CORNER TOP RIGHT
         // render_flag.g += !(render_flag.g & 48) && world.get_opaque_block_id(coord, x+1, y-1, z+1) ? 4 : 0;
 
         //AO CORNER BOTTOM RIGHT
-        render_flag.g += !(render_flag.g & 40) && world.get_opaque_block_id(coord, x+1, y-1, z-1) ? 2 : 0;
+        id = world.get_opaque_block_id(coord, x+1, y-1, z-1);
+        render_flag.g += !(render_flag.g & 40) && id && id < BLOCK_LIGHT_LIMIT ? 2 : 0;
 
         //AO CORNER BOTTOM LEFT
         // render_flag.g += !(render_flag.g & 72) && world.get_opaque_block_id(coord, x+1, y+1, z-1) ? 1 : 0;
@@ -363,19 +377,24 @@ void Render_Engine::set_block_renderflags(char face, int i, int j)
         render_flag.b += 128;
 
         // AO TOP LEFT
-        render_flag.b += world.get_opaque_block_id(coord, x-1, y, z+1) ? 64 : 0;
+        id = world.get_opaque_block_id(coord, x-1, y, z+1);
+        render_flag.b += id && id < BLOCK_LIGHT_LIMIT ? 64 : 0;
 
         // AO TOP RIGHT 
-        render_flag.b += world.get_opaque_block_id(coord, x, y-1, z+1) ? 32 : 0;
+        id = world.get_opaque_block_id(coord, x, y-1, z+1);
+        render_flag.b += id && id < BLOCK_LIGHT_LIMIT ? 32 : 0;
 
         // AO BOTTOM LEFT 
-        render_flag.b += world.get_opaque_block_id(coord, x, y+1, z+1) ? 16 : 0;
+        id = world.get_opaque_block_id(coord, x, y+1, z+1);
+        render_flag.b += id && id < BLOCK_LIGHT_LIMIT ? 16 : 0;
 
         // AO BOTTOM RIGHT
-        render_flag.b += world.get_opaque_block_id(coord, x+1, y, z+1) ? 8 : 0;
+        id = world.get_opaque_block_id(coord, x+1, y, z+1);
+        render_flag.b += id && id < BLOCK_LIGHT_LIMIT ? 8 : 0;
 
         // AO CORNER TOP
-        render_flag.b += !(render_flag.b & 96) && world.get_opaque_block_id(coord, x-1, y-1, z+1) ? 4 : 0;
+        id = world.get_opaque_block_id(coord, x-1, y-1, z+1);
+        render_flag.b += !(render_flag.b & 96) && id && id < BLOCK_LIGHT_LIMIT ? 4 : 0;
 
         // AO CORNER LEFT 
         // render_flag.b += !(render_flag.b & 80) && world.get_opaque_block_id(coord, x-1, y+1, z+1) ? 2 : 0;

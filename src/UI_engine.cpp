@@ -177,21 +177,27 @@ float UI_Engine::draw_txt_line(GPU_Target *screen,
     fontsize, 
     &font_red_shader, IDMENU_UNTITLED, align);
 
-    float space_size = fontsize*UI->h;
+    float space_size = fontsize*UI->h*1.5;
     // space_size = 0.0;
 
     // txt.centered_posx -= txt.getRect().w*(sizew/4.0 + (nbstrs/2.0)-0.0)+ 0.5*space_size*(nbstrs-1);
 
     if(align == TEXT_ALIGN_CENTER)
-        txt.centered_posx -= 0.5*txt.getRect().w*(sizew/2.0 + 1.0) + 0.5*space_size*(nbstrs-1);
+        txt.centered_posx -= 0.5*txt.getRect().w*(sizew/2.0) + 0.5*space_size*(nbstrs-1);
     else if(align == TEXT_ALIGN_RIGHT)
         txt.centered_posx -= 0.5*space_size*(nbstrs-1);
 
+    int wtmp = 0;
     for(int i = 0; i < nbstrs; i++)
     {
         txt.refresh_text(strs[i]);
 
         GPU_Rect r = txt.getRect();
+
+        if(wtmp > r.w)
+            txt.centered_posx -= wtmp-r.w;
+
+        r = txt.getRect();
 
             if(mouse.x > r.x-r.w/2 && mouse.x < r.x+r.w/2 &&
             mouse.y > r.y-r.h/2 && mouse.y < r.y+r.h/2)
@@ -221,6 +227,7 @@ float UI_Engine::draw_txt_line(GPU_Target *screen,
             txt.render(UI, TEXT_MOD_NONE);
 
         txt.centered_posx += r.w + space_size;
+        wtmp = r.w;
     }
     
     return fontsize;
@@ -1182,13 +1189,19 @@ void UI_Engine::render_frame(int game_state,
                 help_activated = !help_activated;
             }
         }
-        
+
         if(help_activated)
             flag = UIWIN_HIGHLIGHT1;
 
         construction_help->change_position_norm(screen->w*0.0275, ypos);
 
         draw_window(UI, construction_help->getx(), construction_help->gety(), construction_help->getw(), construction_help->geth(), flag);
+
+        // construction_help->change_size_norm(construction_help->getx()+cos(timems*0.005)*10.0 * screen->h/1080.f, 
+        //                                     construction_help->gety());
+
+        construction_help->change_position_norm(construction_help->getx()+sin(timems*0.0060)*2.0 * screen->h/1080.f, 
+                                                construction_help->gety()+cos(timems*0.0060)*2.0 * screen->h/1080.f);
 
         construction_help->render(UI);
 

@@ -200,7 +200,8 @@ void main (void)
     float GI = light_direction[face];
 
     if(id >= 208)
-        GI = GI + (1.0-GI)*0.85;
+        GI = 1.0;
+    //     GI = GI + (1.0-GI)*0.85;
     
     // vec3 test = global_illumination.rgb + pixel_light.rgb*0.5;
     vec3 test = global_illumination.rgb + pixel_light.rgb*0.5;
@@ -208,7 +209,7 @@ void main (void)
     if(test.r >= 1) test.r = 1;
     if(test.g >= 1) test.g = 1;
     if(test.b >= 1) test.b = 1;
-    if(id >= 208) test = vec3(1.0);
+    // if(id >= 208) test = vec3(1.0);
 
     vec4 PixelTint = vec4(test, 1);
     
@@ -235,9 +236,9 @@ void main (void)
     // if(val != 0.0)
     //     b *= 1.0+val;
 
-    if(id >= 208)
-        PixelTint *= b*1.75;
-    else
+    // if(id >= 208)
+    //     PixelTint *= b*1.15;//b*1.75;
+    // else
         PixelTint *= b;
 
     PixelTint *= GI;
@@ -245,7 +246,6 @@ void main (void)
     ///// COLOR /////
     vec2 ColorCoord = vec2(float(id%16)/16.0, float(id/16)/16.0);
     vec4 block_color = texture(atlas, ColorCoord);
-
     ///// BORDER /////
 
     if(sprite_size > 5)
