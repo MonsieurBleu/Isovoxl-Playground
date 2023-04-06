@@ -4,7 +4,7 @@
 #include <iostream>
 
 const std::string TITLE = "ISOVOXL PLAYGROUND";
-const std::string VERSION = "beta 0.17.3";
+const std::string VERSION = "beta 0.17.4";
 
 const std::string SETTINGS_FILENAME = "saves/settings.bin";
 

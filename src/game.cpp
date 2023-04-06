@@ -156,7 +156,8 @@ void Game::init_Render_Engine(GPU_Target* _screen)
 
     RE.transparent_shader.activate();
     GPU_SetShaderImage(RE.Textures[SHADERTEXT_WATER]->ptr, RE.transparent_shader.get_location("water"), 4);
-    // GPU_SetShaderImage(RE.Textures[BLOCK_NORMAL]->ptr, RE.transparent_shader.get_location("normal"), 6);
+    GPU_SetShaderImage(RE.Textures[BLOCK_NORMAL]->ptr, RE.transparent_shader.get_location("normal"), 6);
+    GPU_SetShaderImage(RE.DFIB_FBO, RE.transparent_shader.get_location("DFIB"), 3);
     RE.transparent_shader.deactivate();
 
     RE.max_height_render = world.max_block_coord.z;

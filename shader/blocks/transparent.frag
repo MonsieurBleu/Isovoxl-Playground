@@ -189,7 +189,7 @@ void handle_water(vec4 pixel, vec4 pixel_norm)
 
     uint depth = extract_depth(DFIBp);
 
-    if(depth >= block_height) discard;
+    //if(depth >= block_height) discard;
 
     // determine depth height
     float water_depth;
@@ -517,19 +517,14 @@ float Shadows(vec4 pixel_norm)
 
 vec2 coord_roration(vec2 uv, vec2 rpoint, float angle)
 {
-    angle = angle * PI/180;
-    return vec2(
-           (uv.x-rpoint.x)*cos(angle)-(uv.y-rpoint.y)*sin(angle) + rpoint.x, 
-           (uv.x-rpoint.x)*sin(angle)+(uv.y-rpoint.y)*cos(angle) + rpoint.y);
+    angle = angle * PI/180.f;
+
+    vec2 ret = vec2((uv.x-rpoint.x)*cos(angle)-(uv.y-rpoint.y)*sin(angle) + rpoint.x, (uv.x-rpoint.x)*sin(angle)+(uv.y-rpoint.y)*cos(angle) + rpoint.y);
+    return ret;
 }
 
 void main (void)
 {
-//     fragColor = vec4(0.0);
-//     fragColor.a = 1.0;
-//     gl_FragDepth = 0.0;
-    // return;
-
     id = block_info%256;
 
     vec4 pixel;
@@ -560,13 +555,12 @@ void main (void)
 
     vec2 tc2 = texCoord;
 
-    tc2 = coord_roration(tc2, vec2(0.5), 180);
-
+    vec2 tc4 = vec2(0.5, 0.5);
+    tc2 = coord_roration(texCoord, tc4, 180.f);
     vec4 pixel_part = texture(normal, tc2);
 
     // fragColor = pixel_part;
     // return;
-
 
     render_flagsl = render_flags%256;
     render_flagsr = (render_flags>>8)%256;

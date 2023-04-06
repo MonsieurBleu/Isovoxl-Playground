@@ -42,8 +42,8 @@ int LightHandler::add(light_block lb)
 
 void World::check_light_trash_bin()
 {
-    std::cout << "Checking lights trash bin with size " << lights.trash_bin.size();
-    startbenchrono();
+    // std::cout << "Checking lights trash bin with size " << lights.trash_bin.size();
+    // startbenchrono();
 
     for(auto i = lights.trash_bin.begin(); i != lights.trash_bin.end();)
     {
@@ -60,7 +60,7 @@ void World::check_light_trash_bin()
             i++;
     }
 
-    endbenchrono();
+    // endbenchrono();
 
     lights.is_full = true;
     lights.time_since_last_full = timems;

@@ -839,6 +839,8 @@ void Render_Engine::render_all_highlighted_blocks()
         
     }
 
+    GPU_SetShaderImage(DFIB_FBO, transparent_shader.get_location("DFIB"), 3);
+
     GPU_SetUniformi(10, 0); //depth mode
     send_primitives_buffer(hl_screen, Textures[BLOCK_HIGHLIGHT]->ptr, primitives_buffer, sprite_counter);
     
@@ -1180,6 +1182,7 @@ void Render_Engine::render_frame(bool render_map)
         
         GPU_SetShaderImage(Color_FBO, transparent_shader.get_location("world"), 8);
         GPU_SetShaderImage(Textures[BLOCK_NORMAL]->ptr, transparent_shader.get_location("normal"), 6);
+        GPU_SetShaderImage(DFIB_FBO, transparent_shader.get_location("DFIB"), 3);
         GPU_SetUniformf(1, timems/7500.0);
         GPU_SetUniformfv(3, 3, 1, gi_direction);
         GPU_SetUniformfv(4, 4, 1, global_illumination);
@@ -1197,6 +1200,7 @@ void Render_Engine::render_frame(bool render_map)
         }
         
         GPU_SetShaderImage(Textures[MOSAIC]->ptr, world_render_shader.get_location("atlas"), 1);
+        GPU_SetShaderImage(DFIB_FBO, transparent_shader.get_location("DFIB"), 3);
         GPU_SetShaderImage(hl_FBO, world_render_shader.get_location("hlworld"), 9); 
         GPU_SetShaderImage(hld_FBO, world_render_shader.get_location("hlworld_depth"), 10);
         GPU_SetUniformi(7, BLOCK_TEXTURE_SIZE);
