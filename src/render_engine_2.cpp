@@ -403,18 +403,28 @@ void Render_Engine::set_global_illumination_direction()
 
 void Render_Engine::rotate_camera(int new_wvp)
 {
-    float cx = (screen->w-2*target.x)/block_onscreen_size;
-    float cy = (screen->h-2*target.y)/block_onscreen_half;
+    // float cx = (screen->w-2*target.x)/block_onscreen_size;
+    // float cy = (screen->h-2*target.y)/block_onscreen_half;
 
-    float x = (cx+cy)/2;
-    float y = (cy-cx)/2;
+    // float x = (cx+cy)/2;
+    // float y = (cy-cx)/2;
+
+    float cx = (mouse.x-target.x)/block_onscreen_size;
+    float cy = (mouse.y-target.y)/block_onscreen_half;
+
+    float x = (cx+cy);
+    float y = (cy-cx);
 
     int height = 0;
 
     screen_block *sb = projection_grid.get_pos_world(round(x), round(y), 0);
 
     if(sb)
+    {
         height = sb->height;
+        // std::cout << height << "\t";
+        // std::cout << new_wvp << "\n";
+    }
 
     float nx = world.max_block_coord.x - y - height*2;
     float ny = x;
@@ -717,7 +727,7 @@ void Render_Engine::refresh_line_shadows(coord3D beg, coord3D end)
     int ybeg = beg.y;
     int yend = end.y;
 
-    int zbeg = beg.z;
+    // int zbeg = beg.z;
     int zend = end.z;
 
     if(beg.x > end.x)
@@ -734,7 +744,7 @@ void Render_Engine::refresh_line_shadows(coord3D beg, coord3D end)
 
     if(beg.z > end.z)
     {
-        zbeg = end.z;
+        // zbeg = end.z;
         zend = beg.z;
     }
 
@@ -742,7 +752,7 @@ void Render_Engine::refresh_line_shadows(coord3D beg, coord3D end)
     xbeg -= zend;
     xbeg = xbeg < 0 ? 0 : xbeg;
     
-    zbeg = 0;
+    // zbeg = 0;
     // zbeg --;
     // zbeg = zbeg < 0 ? 0 : zbeg;
 
