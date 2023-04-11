@@ -30,6 +30,7 @@ obj/%.o : src/%.cpp
 lowram : 
 	@echo > /dev/null 
 	$(eval LOWRAMFLAG := -DLOW_GEOMETRY_MOD -DLOW_RAM_MOD)
+	$(eval EXEC := $(EXEC_LOWRAM))
 
 .PHONY : clean install run default cleanwin winreinstall lowram
 

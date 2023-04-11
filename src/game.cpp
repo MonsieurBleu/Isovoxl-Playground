@@ -580,7 +580,8 @@ int Game::load_world(std::string filename,
                bool new_size, 
                bool recenter_camera, 
                world_extras* extras, 
-               world_extras_select extras_select)
+               world_extras_select extras_select,
+               bool clear_pg)
 {
     // Uint64 start = Get_time_ms();
     // Uint64 end;
@@ -599,6 +600,12 @@ int Game::load_world(std::string filename,
 
     if(status == 0) 
     {
+        if(clear_pg)
+        {
+            RE.projection_grid.clear();
+            world.lights.trash_bin.clear();
+        }   
+
         if(new_size)
         {
             // RE.projection_grid.free_pos();    

@@ -164,7 +164,8 @@ class Game
                        bool new_size = true, 
                        bool recenter_camera = false, 
                        world_extras* extras = nullptr, 
-                       world_extras_select extras_select = world_extras_select(false));
+                       world_extras_select extras_select = world_extras_select(false),
+                       bool clear_pg = false);
 
         // saves a world extra given as a parameter to a file
         int save_world_extras(std::string filename, world_extras& extras);

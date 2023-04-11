@@ -784,8 +784,8 @@ int World::load_from_file(const char* filename)
 
 #else
 
-    if(new_size.x > 256 || new_size.z > 256 || new_size.y > 75)
-        return SAVE_ERROR_FILE_NOT_OPEN;
+    // if(new_size.x > 256 || new_size.y > 256 || new_size.z > 75)
+    //     return SAVE_ERROR_FILE_NOT_OPEN;
 
 #endif
 

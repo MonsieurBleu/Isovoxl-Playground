@@ -881,8 +881,8 @@ int Game::input_world_selection(SDL_Event &event, SDL_Keymod km)
             SDL_UnlockMutex(GameEvent.world_and_projection_grid_mut);
             
             // undo_manager.clear();
-            RE.projection_grid.clear();
-            world.lights.trash_bin.clear();
+            // RE.projection_grid.clear();
+            // world.lights.trash_bin.clear();
 
             RE.highlight_mode = HIGHLIGHT_MOD_NONE;
             RE.highlight_type = HIGHLIGHT_BLOCKS;
