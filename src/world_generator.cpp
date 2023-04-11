@@ -482,7 +482,7 @@ Uint8 hfunc_Canyons(const coord3D &pos, Uint16 height, int randmod)
 void World_Generator::generate_height_Canyons(World &world, int ratiox, int ratioy)
 {
     Canyons_height_shrink = Canyons_height_shrink_val*height_ratio;
-    Canyons_sealevel = Canyons_sealevel_preset[preset_id];
+    Canyons_sealevel = Canyons_sealevel_preset[preset_id]*0.65;
 
     int pixelx = 0;
     int pixely = 0;
@@ -502,10 +502,10 @@ void World_Generator::generate_height_Canyons(World &world, int ratiox, int rati
             // height *= 0.5;
 
             height = 512-height;
-            height = pow(height/512.0, 2)*750;
+            height = pow(height/512.0, 1.75)*600;
             // height = pow(height/512.0, 0.5)*500;
 
-            height = height*Canyons_height_shrink;
+            height = (height-40)*Canyons_height_shrink;
             // height += 3.5*(height/512.0)*randmod/250;
             // height += 2.0090*height_ratio*randmod/256.0;
             // height += 2.0*height_ratio*randmod/256.0;
