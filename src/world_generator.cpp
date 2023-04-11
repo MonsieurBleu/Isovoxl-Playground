@@ -148,7 +148,21 @@ void World_Generator::prepare_batch_operations()
 {
     if(preset_id == BIOME_FLAT) return;
 
+#ifdef LOW_RAM_MOD
     switch (world_size_id)
+    {
+        case 0 : world_size = {128, 128, 64}; break;
+
+        case 1 : world_size = {64, 64, 32}; break;
+
+        case 2 : world_size = {32, 32, 32}; break;
+
+        case 3 : world_size = {16, 16, 16}; break;
+    
+    default: return; break;
+    }
+#else
+        switch (world_size_id)
     {
         case 0 : world_size = {256, 256, 75}; break;
 
@@ -162,6 +176,7 @@ void World_Generator::prepare_batch_operations()
     
     default: return; break;
     }
+#endif
 
     load_heightmap_from_id();
     init_shaders();

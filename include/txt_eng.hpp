@@ -69,7 +69,18 @@ const std::string NW_BIOMES_NAMES[9] = { "PLAINS    ",
 
 const std::string NW_PRESET_NAMES[4] = { "PRESET 1", "PRESET 2", "PRESET 3", "PRESET 4"};
 
-const std::string NW_SIZE_NAMES[5] = { "HUGE", "LARGE", "NORMAL", "SMALL", "TINY"};
+#ifdef LOW_RAM_MOD
+
+#define NW_SIZE_NB 4
+const std::string NW_SIZE_NAMES[NW_SIZE_NB] = { "LARGE", "NORMAL", "SMALL", "TINY"};
+
+#else
+
+#define NW_SIZE_NB 5
+const std::string NW_SIZE_NAMES[NW_SIZE_NB] = { "HUGE", "LARGE", "NORMAL", "SMALL", "TINY"};
+
+#endif
+
 
 const std::string NW_default_name = "";
 

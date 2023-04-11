@@ -179,7 +179,11 @@ void Game::generate_debug_world()
 
 void Game::init(GPU_Target* _screen)
 {
+#ifdef LOW_RAM_MOD
+    std::cout << "\n ##### ISO VOX [LOW RAM MOD] #####\n";
+#else 
     std::cout << "\n ##### ISO VOX #####\n";
+#endif
 
     timems = Get_time_ms();
 
@@ -639,9 +643,9 @@ int Game::load_world(std::string filename,
 
         world.find_highest_nonemptychunk();
         RE.max_height_render = (world.highest_nonemptychunk+1)*CHUNK_SIZE;
+
+        Current_world_name = filename;
     }
-    else
-        std::cout << "world load failed ._. !\n";
 
     return status;
 }

@@ -622,7 +622,13 @@ void UI_Engine::render_frame(int game_state,
         menu_selectionables[2] = -1;
 
         float fontsize = 0.0225;
-        draw_txt_line(UI, 0.5, sizes_ydec+0.125, NW_SIZE_NAMES, 5, *menu_selected[0], &menu_selectionables[0], -1, fontsize);
+        draw_txt_line(UI, 0.5, sizes_ydec+0.125, NW_SIZE_NAMES, NW_SIZE_NB, *menu_selected[0], &menu_selectionables[0], -1, fontsize);
+        
+        // #ifdef LOW_RAM_MOD
+        // if(menu_selectionables[0] == -1)
+        //     menu_selectionables[0] -= 1;
+        // #endif
+        
         float yjump = fontsize*3;
         draw_txt_line(UI, 0.125+fontsize*4*((float)(screen->h)/screen->w), 0.025 + yjump*2, 
                       NW_BIOMES_NAMES, 9, *menu_selected[1], &menu_selectionables[1], 1, fontsize);
@@ -1745,7 +1751,7 @@ void UI_Engine::generate_tiles(int game_state, int screenw, int screenh)
         float menu_yjumps = 0.125;
         // opt_font_size = 0.035;
         opt_font_size = 0.0275;
-        float opt_x = 0.630;
+        float opt_x = 0.625; //0.630;
         // float opt_size = opt_font_size*screenh;
 
         const std::string opt_names[] = 
@@ -1800,7 +1806,7 @@ void UI_Engine::generate_tiles(int game_state, int screenw, int screenh)
         };
     
         float resx = 0.50 - 0.15;
-        float resy = 0.20;
+        float resy = 0.2165;
         float resyjumps = 0.075;
 
         options_resolutions.push_back(std::make_shared<UI_text>(

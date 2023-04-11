@@ -36,7 +36,8 @@ struct Construction_cinputs
         SCREENSHOT  = {SDL_SCANCODE_F2, "SCREENSHOT"},
         TGLE_GRID   = {SDL_SCANCODE_F3, "TOGGLE GRID"},
         QUICKSAVE   = {SDL_SCANCODE_F5, "QUICKSAVE"},
-        QUICKLOAD   = {SDL_SCANCODE_F9, "QUICKLOAD"}
+        QUICKLOAD   = {SDL_SCANCODE_F9, "QUICKLOAD"},
+        REFRESH_D   = {SDL_SCANCODE_R,  "REFRESH DISPLAY"}
         ;
 };
 

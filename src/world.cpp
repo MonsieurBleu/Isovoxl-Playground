@@ -5,8 +5,14 @@ World::World(bool _is_main)
     chunks = NULL;
     is_main = _is_main;
 
+#ifdef LOW_RAM_MOD
+    if(is_main)
+        init(128, 128, 64, true);
+#else    
     if(is_main)
         init(256, 256, 75, true);
+#endif
+
 }
 
 typedef chunk CHUNK;
@@ -756,7 +762,8 @@ int get_file_size(FILE* f) {
     return size;
 }
 
-int World::load_from_file(const char* filename) {
+int World::load_from_file(const char* filename)
+{
     // std::cout << "Loading world from file " << filename << "\n";
     FILE* file = fopen(filename, "rb");
     if (!file) {
@@ -769,6 +776,18 @@ int World::load_from_file(const char* filename) {
     chunk_coordonate new_size;
 
     fread(&new_size, sizeof(chunk_coordonate), 1, file);
+
+#ifdef LOW_RAM_MOD
+
+    if(new_size.x > 128 || new_size.y > 128 || new_size.z > 64)
+        return SAVE_ERROR_FILE_NOT_OPEN;
+
+#else
+
+    if(new_size.x > 256 || new_size.z > 256 || new_size.y > 75)
+        return SAVE_ERROR_FILE_NOT_OPEN;
+
+#endif
 
     // std::cout << "max_chunk_coord.x = " << new_size.x << std::endl;
     // std::cout << "max_chunk_coord.y = " << new_size.y << std::endl;

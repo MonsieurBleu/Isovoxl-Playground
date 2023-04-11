@@ -1,4 +1,5 @@
 CC = g++
+LOWRAMFLAG = 
 CPPFLAGS = -Wall -Wno-class-memaccess
 SDLFLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_gpu -lSDL2_mixer -g
 
@@ -6,6 +7,7 @@ OBJ = obj/undo.o obj/audio_engine.o icon/icon.o obj/physics.o obj/coords.o obj/m
 
 INCLUDE = -Iinclude 
 EXEC = iso.exe
+EXEC_LOWRAM = iso_low_ram.exe
 DEL_win = del /Q /F
 DEL = rm -f # linux
 
@@ -15,17 +17,21 @@ run :
 	$(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC) $(SDLFLAGS)
+	$(CC) $(OBJ) $(LOWRAMFLAG) -o $(EXEC) $(SDLFLAGS)
 
 install : $(EXEC)
 
 obj/main.o : main.cpp
-	$(CC) -c $(CPPFLAGS) $(SDLFLAGS) $(INCLUDE) $< -o $@ 
+	$(CC) -c  $(LOWRAMFLAG) $(CPPFLAGS) $(SDLFLAGS) $(INCLUDE) $< -o $@ 
 
 obj/%.o : src/%.cpp
-	$(CC) -c $(CPPFLAGS) $(SDLFLAGS) $(INCLUDE) $< -o $@ 
+	$(CC) -c $(LOWRAMFLAG) $(CPPFLAGS) $(SDLFLAGS) $(INCLUDE) $< -o $@ 
 
-.PHONY : clean install run default cleanwin winreinstall
+lowram : 
+	@echo > /dev/null 
+	$(eval LOWRAMFLAG := -DLOW_GEOMETRY_MOD -DLOW_RAM_MOD)
+
+.PHONY : clean install run default cleanwin winreinstall lowram
 
 clean : 
 	$(DEL) $(EXEC) obj/*.o

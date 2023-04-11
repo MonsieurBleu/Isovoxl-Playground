@@ -897,7 +897,7 @@ int Game::input_world_selection(SDL_Event &event, SDL_Keymod km)
             wes.meteo = true;
             load_world(To_load_World_name, true, true, nullptr, wes);
 
-            Current_world_name = To_load_World_name;
+            // Current_world_name = To_load_World_name;
             retval = INPUT_CLEAR;
 
             To_load_World_name = "/noworld";
@@ -1065,6 +1065,11 @@ int Game::input_construction(SDL_Event &event, SDL_Keymod km)
                     redo();
                     timer_input_redo.start_timer();
                     retval = INPUT_CLEAR;
+                }
+
+                else if(event.key.keysym.scancode == Cinpt.REFRESH_D.code)
+                {
+                    refresh_world_render_fast();
                 }
 
                 else if(event.key.keysym.scancode == Cinpt.TGLE_GRID.code)

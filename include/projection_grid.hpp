@@ -5,7 +5,11 @@
 #include <coords.hpp>
 #include <blocks.hpp>
 
-#define IDENDICAL_LINE_MAX 20 //41
+#ifdef LOW_GEOMETRY_MOD
+    #define IDENDICAL_LINE_MAX 20
+#else
+    #define IDENDICAL_LINE_MAX 15
+#endif
 
 void set_in_interval(int& x, const int min, const int max);
 
